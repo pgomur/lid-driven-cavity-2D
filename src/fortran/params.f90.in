@@ -1,0 +1,92 @@
+module params
+  use iso_fortran_env
+  implicit none
+  private
+  public :: Nx_glob, Ny_glob, Lx_glob, Ly_glob
+  public :: Xmin, Xmax, Ymin, Ymax
+  public :: Re, Ulid, rho, nu, gravity, beta
+  public :: t_end, dt, CFL, time_scheme
+  public :: output_every, output_format, output_dir
+  public :: save_velocity, save_pressure
+  public :: bc_top, bc_bottom, bc_left, bc_right
+  public :: solver_type, max_iters, tol
+  public :: linear_solver, preconditioner
+  public :: num_scheme, order, stabilization
+  public :: verbose, check_bounds
+  public :: dp
+
+  !==============================
+  ! Precision
+  !==============================
+  integer, parameter :: dp = selected_real_kind(15, 307)
+
+  !==============================
+  ! Grid resolution and domain
+  !==============================
+  integer, parameter :: Nx_glob = @PARAM_NX@
+  integer, parameter :: Ny_glob = @PARAM_NY@
+  real(dp), parameter :: Lx_glob = @PARAM_LX@_dp
+  real(dp), parameter :: Ly_glob = @PARAM_LY@_dp
+  real(dp), parameter :: Xmin = @PARAM_XMIN@_dp
+  real(dp), parameter :: Xmax = @PARAM_XMAX@_dp
+  real(dp), parameter :: Ymin = @PARAM_YMIN@_dp
+  real(dp), parameter :: Ymax = @PARAM_YMAX@_dp
+
+  !==============================
+  ! Physical properties
+  !==============================
+  real(dp), parameter :: Re = @PARAM_RE@_dp
+  real(dp), parameter :: Ulid = @PARAM_ULID@_dp
+  real(dp), parameter :: rho = @PARAM_RHO@_dp
+  real(dp), parameter :: nu = @PARAM_NU@_dp
+  real(dp), parameter :: gravity = @PARAM_GRAVITY@_dp
+  real(dp), parameter :: beta = @PARAM_BETA@_dp
+
+  !==============================
+  ! Time integration parameters
+  !==============================
+  real(dp), parameter :: t_end = @PARAM_T_END@_dp
+  real(dp), parameter :: dt = @PARAM_DT@_dp
+  real(dp), parameter :: CFL = @PARAM_CFL@_dp
+  character(len=*), parameter :: time_scheme = "@PARAM_TIME_SCHEME@"
+
+  !==============================
+  ! Output / post-processing
+  !==============================
+  integer, parameter :: output_every = @PARAM_OUTPUT_EVERY@
+  character(len=*), parameter :: output_format = "@PARAM_OUTPUT_FORMAT@"
+  character(len=*), parameter :: output_dir = "@PARAM_OUTPUT_DIR@"
+  logical, parameter :: save_velocity = .@PARAM_SAVE_VELOCITY@.
+  logical, parameter :: save_pressure = .@PARAM_SAVE_PRESSURE@.
+
+  !==============================
+  ! Boundary conditions
+  !==============================
+  character(len=10), parameter :: bc_top = "@PARAM_BC_TOP@"
+  character(len=10), parameter :: bc_bottom = "@PARAM_BC_BOTTOM@"
+  character(len=10), parameter :: bc_left = "@PARAM_BC_LEFT@"
+  character(len=10), parameter :: bc_right = "@PARAM_BC_RIGHT@"
+
+  !==============================
+  ! Solver settings
+  !==============================
+  character(len=10), parameter :: solver_type = "@PARAM_SOLVER_TYPE@"
+  integer, parameter :: max_iters = @PARAM_MAX_ITERS@
+  real(dp), parameter :: tol = @PARAM_TOL@_dp
+  character(len=10), parameter :: linear_solver = "@PARAM_LINEAR_SOLVER@"
+  character(len=10), parameter :: preconditioner = "@PARAM_PRECONDITIONER@"
+
+  !==============================
+  ! Numerical scheme / discretization
+  !==============================
+  character(len=10), parameter :: num_scheme = "@PARAM_NUM_SCHEME@"
+  integer, parameter :: order = @PARAM_ORDER@
+  real(dp), parameter :: stabilization = @PARAM_STABILIZATION@_dp
+
+  !==============================
+  ! Debug / development flags
+  !==============================
+  logical, parameter :: verbose = .@PARAM_VERBOSE@.
+  logical, parameter :: check_bounds = .@PARAM_CHECK_BOUNDS@.
+
+end module params

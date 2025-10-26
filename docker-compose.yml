@@ -1,0 +1,12 @@
+services:
+  lid_driven_cavity_2d:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lid_driven_cavity_2d
+    container_name: lid_driven_cavity_2d_container
+    volumes:
+      - ./src:/app/src         
+      - ./build:/app/build      
+    stdin_open: true
+    tty: true
