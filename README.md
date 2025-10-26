@@ -48,6 +48,19 @@ lid-driven-cavity-2D/
 <pre><code class="bash">cd build && cmake .. -DHDF5_ROOT=/opt/hdf5 -DCMAKE_Fortran_COMPILER=gfortran -DCMAKE_Fortran_FLAGS="-O3 -march=native -funroll-loops -fopenmp -Wall" -DPARAM_NX=32 -DPARAM_NY=32 -DPARAM_LX=1.0 -DPARAM_LY=1.0 -DPARAM_XMIN=0.0 -DPARAM_XMAX=1.0 -DPARAM_YMIN=0.0 -DPARAM_YMAX=1.0 -DPARAM_RE=100.0 -DPARAM_ULID=1.0 -DPARAM_RHO=1.0 -DPARAM_NU=0.01 -DPARAM_GRAVITY=0.0 -DPARAM_BETA=0.0 -DPARAM_T_END=1.0 -DPARAM_DT=0.005 -DPARAM_CFL=0.5 -DPARAM_TIME_SCHEME=RK4 -DPARAM_OUTPUT_EVERY=20 -DPARAM_OUTPUT_FORMAT=hdf5 -DPARAM_OUTPUT_DIR=results -DPARAM_SAVE_VELOCITY=TRUE -DPARAM_SAVE_PRESSURE=TRUE -DPARAM_BC_TOP=Dirichlet -DPARAM_BC_BOTTOM=Dirichlet -DPARAM_BC_LEFT=Dirichlet -DPARAM_BC_RIGHT=Dirichlet -DPARAM_SOLVER_TYPE=explicit -DPARAM_MAX_ITERS=5000 -DPARAM_TOL=1.0e-6 -DPARAM_LINEAR_SOLVER=CG -DPARAM_PRECONDITIONER=ILU -DPARAM_NUM_SCHEME=central -DPARAM_ORDER=2 -DPARAM_STABILIZATION=0.0 -DPARAM_VERBOSE=TRUE -DPARAM_CHECK_BOUNDS=TRUE && cmake --build . -j$(nproc) && export OMP_NUM_THREADS=$(nproc) && ./bin/lid_driven_cavity</code></pre>
 
 <p>💡 <strong>Note:</strong> This command will build the project using all CPU cores and then run the simulator with the configured parameters.</p>
+<p>📂 <strong>Simulation Results:</strong> The output files are saved inside the <code>build/results</code> folder in <strong>HDF5</strong> format.</p>
+<h4>📊 HDF5 Dataset Structure</h4>
+<pre><code>/lid_cavity.h5
+├── x_coords [1D array]        (X coordinates)
+├── y_coords [1D array]        (Y coordinates)
+├── U_000000 [2D array]        (X velocity, step 0)
+├── V_000000 [2D array]        (Y velocity, step 0)
+├── P_000000 [2D array]        (Pressure, step 0)
+├── time_000000 [attribute]    (Physical time)
+├── step_000000 [attribute]    (Step number)
+├── ...                        (Subsequent steps)
+└── Attributes                 (Re, nu, dt, version, etc.)
+</code></pre>
 
 <h4>Explanation of the command:</h4>
 <ul>
