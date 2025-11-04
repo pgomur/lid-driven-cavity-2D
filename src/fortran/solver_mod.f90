@@ -4,7 +4,7 @@
 !   - Robust error handling
 !   - Convergence diagnostics
 !   - Optimized memory access patterns
-!   - Production-ready logging
+!   - Production-ready logging.
 !=============================================================
 module solver_mod
   use params
