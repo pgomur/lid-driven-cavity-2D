@@ -11,7 +11,6 @@
   <img src="https://img.shields.io/badge/HDF5-1.14.3-4393D3?logo=hdf5" />
 </p>
 
-
 ## 📂 Project Structure
 ```text
 lid-driven-cavity-2D/
