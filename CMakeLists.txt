@@ -66,7 +66,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/fortran/params.f90.in
                @ONLY)
 
 # ====================================
-# Modules and directories
+# Modules and directories.
 # ====================================
 set(CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/mod)
 include_directories(${CMAKE_BINARY_DIR})
